@@ -1,8 +1,10 @@
 import React from "react";
 import VideoPlayer from "../components/VideoPlayer";
 import yeongheefront from "../img/yeongheefront2.png";
+import { useNavigate } from "react-router-dom";
 
 const MugungwhaGame = () => {
+  const navigate = useNavigate();
   return (
     <div
       className="MainContatiner"
@@ -39,6 +41,13 @@ const MugungwhaGame = () => {
         style={{ flex: "1", backgroundColor: "white" }}
       >
         <img src={yeongheefront} alt="관리자" width="100%"></img>
+        <button
+          onClick={() => {
+            navigate("/retry", { url: "/mugungwhaintro" });
+          }}
+        >
+          그만하기
+        </button>
       </div>
     </div>
   );

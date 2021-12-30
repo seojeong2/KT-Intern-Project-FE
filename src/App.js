@@ -8,6 +8,7 @@ import DalgonaIntro from "./pages/DalgonaIntro";
 import RspIntro from "./pages/RspIntro";
 import DalgonaGame from "./pages/DalgonaGame";
 import MugungwhaGame from "./pages/MugungwhaGame";
+import Retry from "./pages/Retry";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route exact={true} path="/rspintro" element={<RspIntro />} />
         <Route exact={true} path="/dalgonagame" element={<DalgonaGame />} />
         <Route exact={true} path="/mugungwhagame" element={<MugungwhaGame />} />
+        <Route exact={true} path="/retry" element={<Retry />} />
       </Routes>
     </div>
   );
