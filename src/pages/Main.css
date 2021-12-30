@@ -1104,3 +1104,11 @@ body {
     opacity: 0;
   }
 }
+
+.nc {
+  width: "100px";
+  height: "50px";
+  margin-top: "500px";
+  z-index: "99";
+  position: absolute;
+}

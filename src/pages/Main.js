@@ -1,5 +1,6 @@
 import React from "react";
 import "./Main.css";
+import namecard from "../img/namecard.png";
 
 const Main = () => {
   return (
@@ -98,6 +99,8 @@ const Main = () => {
         <div class="fifth_letter02"></div>
         <div class="fifth_letter04"></div>
         <div class="fifth_letter05"></div>
+
+        <img class="nc" src={namecard}></img>
       </div>
     </div>
   );
