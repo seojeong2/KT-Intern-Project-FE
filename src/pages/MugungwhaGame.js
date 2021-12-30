@@ -1,46 +1,50 @@
 import React from "react";
-import yeongheefront from "../img/yeongheefront2.png";
+import VideoPlayer from "../components/VideoPlayer";
+import yeongheefront from "../img/yeongheefront.png";
+import { makeStyles } from '@material-ui/core/styles';
+import { Button, Grid, Paper } from "@material-ui/core";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    padding: theme.spacing(3)
+  },
+  paper: {
+    minHeight:'100%',
+    padding: theme.spacing(2),
+    alignItems: "center",
+    color: theme.palette.text.secondary
+  }
+}));
 const MugungwhaGame = () => {
-  return (
-    <div
-      className="MainContatiner"
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-      }}
-    >
-      <div
-        className="container1"
-        style={{
-          flex: "1",
-          backgroundColor: "white",
+  const classes = useStyles();
 
-          marginBottom: "100px",
-          height: "100vh",
-        }}
-      >
-        <h1>웹캠 영역</h1>
-      </div>
-      <div
-        className="container1"
-        style={{
-          flex: "1",
-          marginBottom: "100px",
-          backgroundColor: "green",
-        }}
-      >
-        <h1>웹캠 영역</h1>
-      </div>
-      <div
-        className="container1"
-        style={{ flex: "1", backgroundColor: "white" }}
-      >
-        <img src={yeongheefront} alt="관리자" width="100%"></img>
-      </div>
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>동작</Paper>
+        </Grid>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}>
+            <VideoPlayer />
+            <VideoPlayer />
+          </Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>
+            <img src={yeongheefront} alt="관리자" width="100%"></img>
+            <Button variant="contained" color="secondary" marginTop='20px'>그만하기</Button>
+          </Paper>
+        </Grid>
+      </Grid>
     </div>
   );
 };
 
 export default MugungwhaGame;
+
+
+
+
+    

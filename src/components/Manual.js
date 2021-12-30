@@ -1,50 +1,42 @@
 import React from "react";
-import managerImage from "../img/tri_right.png";
+import managerImage from "../img/circle_right.png";
 import { useNavigate } from "react-router-dom";
-
+import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Paper } from "@material-ui/core";
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: theme.spacing(3),
+    alignItems:'center',
+    flexGrow: 1
+  },
+  paper: {
+    height: 500,
+    padding: theme.spacing(2),
+    textAlign: "center",
+    alignItems:'center'
+  }
+}));
 const Manual = ({ props }) => {
   const navigate = useNavigate();
+  const classes = useStyles();
+
   return (
-    <div style={{ display: "flex", backgroundColor: "white", height: "100vh" }}>
-      <div
-        className="LeftContainer"
-        style={{
-          backgroundColor: "white",
-          width: "40%",
-          //height: "100vh",
-          margin: "50px",
-        }}
-      >
-        <img
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={5}>
+          <Paper className={classes.paper}>
+          <img
           src={managerImage}
           alt="오징어게임 관리자"
           position={"absolute"}
           height={"100%"}
         ></img>
-      </div>
-      <div
-        className="RightContainer"
-        style={{
-          width: "60%",
-          //height: "100vh",
-          margin: "50px",
-          display: "flex",
-          flexDirection: "column",
-          textAlign: "center",
-          //backgroundColor: "blue",
-        }}
-      >
-        <div style={{ fontSize: "60px" }}>게임 설명</div>
-
-        <button
-          style={{ width: "100px", height: "50px", marginTop: "500px" }}
-          onClick={() => {
-            navigate(props);
-          }}
-        >
-          게임하러 가기
-        </button>
-      </div>
+          </Paper>
+        </Grid>
+        <Grid item xs={7}>
+          <Paper className={classes.paper}>xs=6</Paper>
+        </Grid>
+      </Grid>
     </div>
   );
 };
