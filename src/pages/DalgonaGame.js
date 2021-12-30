@@ -1,7 +1,6 @@
 import { Button, Grid, makeStyles, Paper } from "@material-ui/core";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import VideoPlayer from "../components/VideoPlayer";
 import squidManager from "../img/manager.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,12 +25,10 @@ const DalgonaGame = () => {
       <Grid container spacing={3}>
         <Grid item xs={5}>
           <Paper className={classes.paper}>
-            <VideoPlayer />
           </Paper>
         </Grid>
         <Grid item xs={4}>
           <Paper className={classes.paper}>
-            <VideoPlayer />
           </Paper>
         </Grid>
         <Grid item xs={3}>
