@@ -1,4 +1,5 @@
 import React from "react";
+import VideoPlayer from "../components/VideoPlayer";
 import yeongheefront from "../img/yeongheefront2.png";
 
 const MugungwhaGame = () => {
@@ -31,7 +32,7 @@ const MugungwhaGame = () => {
           backgroundColor: "green",
         }}
       >
-        <h1>웹캠 영역</h1>
+        <VideoPlayer />
       </div>
       <div
         className="container1"
