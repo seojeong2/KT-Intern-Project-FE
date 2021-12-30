@@ -38,6 +38,7 @@ const MugungwhaGame = () => {
           </Paper>
         </Grid>
       </Grid>
+
     </div>
   );
 };
