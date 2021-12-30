@@ -2,6 +2,8 @@ const app = require("express")();
 const server = require("http").createServer(app);
 const cors = require("cors");
 const { Socket } = require("socket.io");
+const spawn= require('child_process').spawn;
+const result=spawn('python3',['hello.py']);
 
 const io = require("socket.io")(server, {
 	cors: {

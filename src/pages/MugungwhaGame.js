@@ -1,6 +1,5 @@
 import React from "react";
 import VideoPlayer from "../components/VideoPlayer";
-
 import yeongheefront from "../img/yeongheefront.png";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Grid, Paper } from "@material-ui/core";
@@ -22,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
 const MugungwhaGame = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
@@ -31,8 +29,8 @@ const MugungwhaGame = () => {
         </Grid>
         <Grid item xs={6}>
           <Paper className={classes.paper}>
-            <VideoPlayer />
-            <VideoPlayer />
+          <img src="http://localhost:5100/move_main" width="100%"></img>
+          <img src="http://localhost:5100/pose_main" width="100%"></img>
           </Paper>
         </Grid>
         <Grid item xs={3}>
