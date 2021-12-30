@@ -1,5 +1,6 @@
 import { ContactsOutlined } from "@material-ui/icons";
 import React from "react";
+import { StyledButton } from "../components/Styled";
 
 import { useNavigate } from "react-router-dom";
 
@@ -12,16 +13,17 @@ const Retry = ({}) => {
         style={{
           color: "white",
           fontFamily: "koryeo",
-          fontSize: "100px",
+          fontSize: "150px",
           marginTop: "100px",
         }}
       >
         게임을 다시 시작하겠습니까?
       </h1>
       <div className="button-container" style={{ marginTop: "300px" }}>
+        {/*}
         <button
           style={{
-            borderRadius: "50px",
+            borderRadius: "20px",
             backgroundColor: "red",
             width: "100px",
             height: "100px",
@@ -36,9 +38,14 @@ const Retry = ({}) => {
         >
           다시
         </button>
+        */}
+        <StyledButton color='green' onClick={() => {
+            navigate(-2);
+          }} >다시</StyledButton>
+        {/*
         <button
           style={{
-            borderRadius: "50px",
+            borderRadius: "20px",
             backgroundColor: "green",
             width: "100px",
             height: "100px",
@@ -53,6 +60,10 @@ const Retry = ({}) => {
         >
           끝
         </button>
+        */}
+        <StyledButton color='red' onClick={() => {
+            navigate("/select");
+          }}>끝</StyledButton>
       </div>
     </div>
   );

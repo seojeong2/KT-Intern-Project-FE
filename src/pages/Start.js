@@ -11,13 +11,13 @@ const Start = () => {
         style={{
           color: "white",
           fontFamily: "koryeo",
-          fontSize: "100px",
+          fontSize: "150px",
           marginTop: "100px",
         }}
       >
         선생님 게임에 참여하시겠습니까..?
       </h1>
-      <div className="button-container" style={{ marginTop: "300px" }}>
+      <div className="button-container" style={{ marginTop: "300px", alignItems:'center' }}>
         <StyledButton
           color="green"
           onClick={() => {

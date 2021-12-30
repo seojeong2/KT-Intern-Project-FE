@@ -5,6 +5,7 @@ import yeongheefront from "../img/yeongheefront.png";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Grid, Paper } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
+import { StyledButton } from "../components/Styled";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,14 +38,22 @@ const MugungwhaGame = () => {
         <Grid item xs={3}>
           <Paper className={classes.paper}>
             <img src={yeongheefront} alt="관리자" width="100%"></img>
-            <Button
-              variant="contained"
-              color="secondary"
-              marginTop="20px"
+           
+          
+            <button
+              style={{
+                width: '140px',
+                height: '70px',
+                backgroundColor: 'red',
+                fontWeight: 'bold',
+                fontSize: '35px',
+                borderRadius: '20px',
+                color: 'white',
+                fontFamily:'koryeo'}}
               onClick={() => navigate("/retry")}
             >
-              그만하기
-            </Button>
+              그만!
+            </button>
           </Paper>
         </Grid>
       </Grid>

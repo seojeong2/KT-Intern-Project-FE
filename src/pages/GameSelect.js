@@ -1,47 +1,48 @@
 import React from "react";
-import managerImage from "../img/tri_right.png";
+import managerImage from "../img/manager.png";
 import { StyledButton } from "../components/Styled";
 import { useNavigate } from "react-router-dom";
-const GameSelect = () => {
+import { Grid, makeStyles, Paper } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    padding: theme.spacing(3)
+  },
+  paper: {
+    minHeight:'100%',
+    padding: theme.spacing(2),
+    alignItems: "center",
+    display:'flex',
+    justifyContent:'center',
+    backgroundColor: 'black',
+    color: theme.palette.text.secondary
+  },
+  paperButton: {
+    minHeight:'100%',
+    padding: theme.spacing(2),
+    alignItems: "center",
+    display:'flex',
+    justifyContent:'center',
+    flexDirection:'column',
+    backgroundColor: 'black',
+    color: theme.palette.text.secondary
+  },
+}));
+
+const GameSelect = ({ props }) => {
+  const classes = useStyles();
   const navigate = useNavigate();
   return (
-    <div style={{ display: "flex", backgroundColor: "white", height: "100vh" }}>
-      <div
-        className="LeftContainer"
-        style={{
-          backgroundColor: "white",
-          width: "40%",
-          //height: "100vh",
-          margin: "50px",
-        }}
-      >
-        <img
-          src={managerImage}
-          alt="오징어게임 관리자"
-          position={"absolute"}
-          height={"100%"}
-        ></img>
-      </div>
-      <div
-        className="RightContainer"
-        style={{
-          width: "60%",
-          //height: "100vh",
-          margin: "50px",
-          display: "flex",
-          flexDirection: "column",
-          textAlign: "center",
-        }}
-      >
-        <div
-          className="button-container"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            textAlign: "center",
-            alignItems: "center",
-          }}
-        >
+<div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}>
+          <img src={managerImage} alt="관리자" width="60%"></img>
+          </Paper>
+        </Grid>
+        <Grid item xs={6}>
+          <Paper className={classes.paperButton}>
           <button
             style={{
               width: "60%",
@@ -51,10 +52,11 @@ const GameSelect = () => {
               marginBottom: "50px",
               marginLeft: "50px",
               marginRight: "50px",
-              fontSize: "30px",
-              backgroundColor: "white",
-              borderWidth: "4px",
-              borderColor: "green",
+              fontSize: "50px",
+              fontFamily:'koryeo',
+              fontWeight:'bold',
+              backgroundColor: "#e6ebce",
+
             }}
             onClick={() => {
               navigate("/mugungwhaintro");
@@ -68,10 +70,10 @@ const GameSelect = () => {
               height: "70px",
               borderRadius: "10px",
               margin: "50px",
-              fontSize: "30px",
-              backgroundColor: "white",
-              borderColor: "#FF1493",
-              borderWidth: "4px",
+              fontSize: "50px",
+              fontFamily:'koryeo',
+              fontWeight:'bold',
+              backgroundColor: "#e6ebce",
             }}
             onClick={() => {
               navigate("/dalgonaintro");
@@ -85,10 +87,10 @@ const GameSelect = () => {
               height: "70px",
               borderRadius: "10px",
               margin: "50px",
-              fontSize: "30px",
-              backgroundColor: "white",
-              borderColor: "green",
-              borderWidth: "4px",
+              fontSize: "50px",
+              fontWeight:'bold',
+              fontFamily:'koryeo',
+              backgroundColor: "#e6ebce",
             }}
             onClick={() => {
               navigate("/rspintro");
@@ -96,9 +98,12 @@ const GameSelect = () => {
           >
             가위바위보
           </button>
-        </div>
-      </div>
+          </Paper>
+        </Grid>
+      </Grid>
+
     </div>
   );
 };
+
 export default GameSelect;

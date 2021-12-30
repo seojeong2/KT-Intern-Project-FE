@@ -1,36 +1,60 @@
+import { Button, Grid, makeStyles, Paper } from "@material-ui/core";
 import React from "react";
-import squidManager from "../img/tri_right.png";
+import { useNavigate } from "react-router-dom";
+import VideoPlayer from "../components/VideoPlayer";
+import squidManager from "../img/manager.png";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    padding: theme.spacing(3)
+  },
+  paper: {
+    minHeight:'100%',
+    padding: theme.spacing(2),
+    alignItems: "center",
+    color: theme.palette.text.secondary
+  }
+}));
 
 const DalgonaGame = () => {
-  return (
-    <div
-      className="MainContatiner"
-      style={{ width: "100%", height: "100%", display: "flex" }}
-    >
-      <div
-        className="container1"
-        style={{
-          flex: "1",
+  const classes = useStyles();
+  const navigate = useNavigate();
 
-          height: "100vh",
-        }}
-      >
-        <img src={squidManager} alt="관리자" width="100%"></img>
-      </div>
-      <div
-        className="container1"
-        style={{
-          flex: "1",
-          marginTop: "100px",
-          marginBottom: "100px",
-          backgroundColor: "white",
-        }}
-      >
-        <h1>웹캠 영역</h1>
-      </div>
-      <div className="container1" style={{ flex: "1" }}>
-        <img src={squidManager} alt="관리자" width="100%"></img>
-      </div>
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={5}>
+          <Paper className={classes.paper}>
+            <VideoPlayer />
+          </Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>
+            <VideoPlayer />
+          </Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>
+          <img src={squidManager} alt="관리자" width="100%"></img>
+          <button
+              style={{
+                width: '140px',
+                height: '70px',
+                backgroundColor: 'red',
+                fontWeight: 'bold',
+                fontSize: '35px',
+                borderRadius: '20px',
+                color: 'white',
+                fontFamily:'koryeo'}}
+              onClick={() => navigate("/retry")}
+            >
+              그만!
+            </button>
+          </Paper>
+        </Grid>
+      </Grid>
+
     </div>
   );
 };

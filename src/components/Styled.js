@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
-  width: 100px;
-  height: 50px;
-  margin-right: 100px;
+  width: 200px;
+  height: 100px;
+  margin:100px;
   background-color: ${(props) => props.color};
   font-weight: bold;
-  font-size: 20px;
-  border-radius: 10px;
+  font-size: 50px;
+  border-radius: 20px;
   color: white;
+  font-family:koryeo;
 `;
