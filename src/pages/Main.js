@@ -1,7 +1,11 @@
 import React from "react";
 import "./Main.css";
+import namecard from "../img/namecard.png";
+import { useNavigate } from "react-router-dom";
 
 const Main = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <div class="canvas">
@@ -99,6 +103,14 @@ const Main = () => {
         <div class="fifth_letter04"></div>
         <div class="fifth_letter05"></div>
       </div>
+      <img
+        class="startbutton"
+        src={namecard}
+        style={{ width: "100px", height: "60px", marginTop: "30px" }}
+        onClick={() => {
+          navigate("/start");
+        }}
+      ></img>
     </div>
   );
 };
