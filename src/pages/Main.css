@@ -1,8 +1,9 @@
+/*
 * {
   padding: 0;
   margin: 0;
 }
-
+*/
 body {
   background-color: #181818;
 }
@@ -1105,10 +1106,16 @@ body {
   }
 }
 
-.nc {
-  width: "100px";
-  height: "50px";
-  margin-top: "500px";
-  z-index: "99";
-  position: absolute;
+.startbutton {
+  animation-name: slidein;
+  animation-duration: 3s;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+  }
+  to {
+    margin-left: 0;
+  }
 }
