@@ -38,6 +38,10 @@ def pose_main():
     return Response(pose_main(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
+@app.route('/mission_pose')
+def mission_pose():
+    return Response(qts._start_game('./images/T Pose.jpg', './sound/assets_sound.wav'))
+
 
 ###### 기능 구현 함수 ######
 

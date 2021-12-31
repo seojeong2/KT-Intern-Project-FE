@@ -1,11 +1,9 @@
 import React from "react";
-import VideoPlayer from "../components/VideoPlayer";
 import yeongheefront from "../img/yeongheefront.png";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Grid, Paper } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { StyledButton } from "../components/Styled";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -21,16 +19,20 @@ const useStyles = makeStyles((theme) => ({
 const MugungwhaGame = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+
   return (
     <div className={classes.root}>
+      <audio src='../../sound/assets_sound.wav' type="audio/wav" loop>
+          </audio>
       <Grid container spacing={3}>
         <Grid item xs={3}>
-          <Paper className={classes.paper}>동작</Paper>
+          <Paper className={classes.paper}>
+          <img src="http://localhost:5100/move_main" width="100%"></img>
+          </Paper>
         </Grid>
         <Grid item xs={6}>
           <Paper className={classes.paper}>
-          <img src="http://localhost:5100/move_main" width="100%"></img>
-          <img src="http://localhost:5100/pose_main" width="100%"></img>
+          <img src="http://localhost:5100/pose_main" width="100%" height='650px'></img>
           </Paper>
         </Grid>
         <Grid item xs={3}>
