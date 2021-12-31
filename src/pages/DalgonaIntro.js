@@ -6,7 +6,9 @@ const DalgonaIntro = () => {
     <div>
       <Manual
         props={"/dalgonagame"}
-        text={"자네 나와 달고나 게임 한판 하겠나?"}
+        text={
+          "두 손가락으로 시작점을 잡고, 한 손가락으로 달고나를 깨보자! 벗어나면 죽음뿐"
+        }
       />
     </div>
   );
