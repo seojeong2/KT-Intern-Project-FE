@@ -6,7 +6,9 @@ const MugungwhaIntro = () => {
     <div>
       <Manual
         props={"/mugungwhagame"}
-        text={"자네 나와 무궁화 게임 한판 하겠나?"}
+        text={
+          "무궁화 꽃이 피었습니다~ 가 나오는 동안 move! 끝나면 동작에 맞춰 stop! 움직이면 죽음뿐.."
+        }
       />
     </div>
   );

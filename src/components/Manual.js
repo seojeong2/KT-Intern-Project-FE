@@ -2,6 +2,7 @@ import React from "react";
 import managerImage from "../img/manager.png";
 import { useNavigate } from "react-router-dom";
 import { Button, Grid, makeStyles, Paper } from "@material-ui/core";
+import { StyledButton } from "./Styled";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -55,11 +56,54 @@ const Manual = ({ props, text }) => {
               <div style={{ fontSize: "100px", color: "black" }}>게임 설명</div>
               <div style={{ marginTop: "50px", fontSize: "50px" }}>{text}</div>
 
-              <button
+              <div
+                className="button-container"
+                style={{ alignItems: "center" }}
+              >
+                <button
+                  style={{
+                    width: "150px",
+                    height: "100px",
+                    marginTop: "180px",
+                    borderRadius: "40px",
+                    marginRight: "80px",
+                    fontWeight: "bold",
+                    backgroundColor: "red",
+                    fontFamily: "koryeo",
+                    fontSize: "50px",
+                  }}
+                  onClick={() => {
+                    navigate(-1);
+                  }}
+                >
+                  안해!
+                </button>
+                <button
+                  style={{
+                    width: "150px",
+                    height: "100px",
+
+                    borderRadius: "40px",
+                    marginTop: "20px",
+
+                    fontWeight: "bold",
+                    backgroundColor: "green",
+                    fontFamily: "koryeo",
+                    fontSize: "50px",
+                  }}
+                  onClick={() => {
+                    navigate(props);
+                  }}
+                >
+                  시작!
+                </button>
+              </div>
+
+              {/* <button
                 style={{
                   width: "150px",
                   height: "100px",
-                  marginTop: "500px",
+                  marginTop: "200px",
                   borderRadius: "40px",
                   marginLeft: "80%",
                   fontWeight: "bold",
@@ -72,8 +116,8 @@ const Manual = ({ props, text }) => {
                 }}
               >
                 시작
-              </button>
-            </div>{" "}
+              </button> */}
+            </div>
           </Paper>
         </Grid>
       </Grid>
