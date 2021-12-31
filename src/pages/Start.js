@@ -1,18 +1,19 @@
 import React from "react";
 import { HeadTitle, StyledButton } from "../components/Styled";
 import { useNavigate } from "react-router-dom";
+import Share from "../img/share3.png";
 
 const Start = () => {
   const navigate = useNavigate();
 
   return (
     <div>
-      <HeadTitle>선생님 게임에 참여하시겠습니까..?</HeadTitle>
+      <HeadTitle style={{ marginTop: "50px" }}>
+        선생님 게임에 참여하시겠습니까..?
+      </HeadTitle>
+      <img src={Share} height={"400px"}></img>
 
-      <div
-        className="button-container"
-        style={{ marginTop: "300px", alignItems: "center" }}
-      >
+      <div className="button-container" style={{ alignItems: "center" }}>
         <StyledButton
           color="green"
           onClick={() => {

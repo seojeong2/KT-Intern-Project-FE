@@ -9,7 +9,9 @@ const Retry = ({}) => {
 
   return (
     <div>
-      <HeadTitle>게임을 다시 시작하겠습니까?</HeadTitle>
+      <HeadTitle style={{ marginTop: "100px" }}>
+        게임을 다시 시작하겠습니까?
+      </HeadTitle>
 
       <div className="button-container" style={{ marginTop: "300px" }}>
         <StyledButton
