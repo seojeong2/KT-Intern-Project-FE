@@ -1,10 +1,10 @@
 import React from "react";
-import Manual from "../components/Manual";
+import Tbcontinue from "../components/Tbcontinue";
 
 const RspIntro = () => {
   return (
     <div>
-      <Manual />
+      <Tbcontinue />
     </div>
   );
 };
