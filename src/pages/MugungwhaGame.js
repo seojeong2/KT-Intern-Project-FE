@@ -4,6 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button, Grid, Paper } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { StyledButton } from "../components/Styled";
+import TPose from '../img/TPose.jpg'
+import music from '../sound/assets_sound.wav'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -22,17 +24,17 @@ const MugungwhaGame = () => {
 
   return (
     <div className={classes.root}>
-      <audio src='../../sound/assets_sound.wav' type="audio/wav" loop>
-          </audio>
+    
       <Grid container spacing={3}>
         <Grid item xs={3}>
           <Paper className={classes.paper}>
+          <img src={TPose} width='100%' height='600px'/>
           <img src="http://localhost:5100/move_main" width="100%"></img>
           </Paper>
         </Grid>
         <Grid item xs={6}>
           <Paper className={classes.paper}>
-          <img src="http://localhost:5100/pose_main" width="100%" height='650px'></img>
+          <img src="http://localhost:5100/pose_main" width="100%" height='880px'></img>
           </Paper>
         </Grid>
         <Grid item xs={3}>
