@@ -6,7 +6,9 @@ const Tbcontinue = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <HeadTitle>열심히 개발중이에요...!</HeadTitle>
+      <HeadTitle style={{ marginTop: "100px" }}>
+        열심히 개발중이에요...!
+      </HeadTitle>
       <StyledButton
         color="green"
         onClick={() => {
