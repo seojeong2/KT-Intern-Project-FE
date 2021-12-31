@@ -25,12 +25,12 @@ const DalgonaGame = () => {
       <Grid container spacing={3}>
         <Grid item xs={5}>
           <Paper className={classes.paper}>
-          <img src="{{ url_for('video_feed') }}" max_width="100%" />
+          <img src="http://127.0.0.1:5000/video_feed" max_width="100%" />
           </Paper>
         </Grid>
         <Grid item xs={4}>
           <Paper className={classes.paper}>
-          <img src="{{ url_for('video_feed1') }}" max_width="100%"/>
+          <img src="http://127.0.0.1:5000/video_feed1" max_width="100%"/>
           </Paper>
         </Grid>
         <Grid item xs={3}>
