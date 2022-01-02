@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import squidManager from "../img/manager.png";
 import axios from 'axios'
+import great from '../img/great.png';
+import soso from '../img/soso.png';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +23,7 @@ const DalgonaGame = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [data,setData]=useState(0);
-  const [result,setResult]=useState('');
+  const [result,setResult]=useState(0);
 
   useEffect(()=>{
     ff()
@@ -37,12 +39,12 @@ const DalgonaGame = () => {
       console.log(response)
       setResult(response.data)
     }).catch((error)=>{
-      console.log('안돼!')
+      console.log(error)
     })
   }
   setInterval(function(){
     setData(data+1)
-    if(result===1){
+    if(result===1||result===2||result===3){
       clearInterval()
     }
   },4000)
@@ -52,8 +54,10 @@ const DalgonaGame = () => {
       <Grid container spacing={3}>
         <Grid item xs={5}>
           <Paper className={classes.paper}>
-          <img src="http://127.0.0.1:5000/video_feed" width="100%"/>
-          {result ===0? <img src="http://127.0.0.1:5000/video_feed" width="100%"/>:<h1>끝!</h1>}
+          {result ===0 && <img src="http://127.0.0.1:5000/video_feed" width="100%"/>}
+          {result ===1 && <img src={soso} width ="100%" />}
+          {result ===2 && <img src={great} width ="100%" />}
+          {result ===3 && <img src={great} width ="100%" />}
           </Paper>
         </Grid>
         <Grid item xs={4}>

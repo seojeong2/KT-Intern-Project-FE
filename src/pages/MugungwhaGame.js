@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import yeongheefront from "../img/yeongheefront.png";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Grid, Paper } from "@material-ui/core";
@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { StyledButton } from "../components/Styled";
 import TPose from '../img/TPose.jpg'
 import music from '../sound/assets_sound.wav'
+import axios from 'axios'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -21,7 +23,33 @@ const useStyles = makeStyles((theme) => ({
 const MugungwhaGame = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const [data,setData]=useState(0);
+  const [result,setResult]=useState(0);
 
+  useEffect(()=>{
+    ff()
+  },[data])
+
+  const ff =async()=>{
+
+    await axios({
+      method:'get',
+      url:'http://127.0.0.1:5100/result',
+      headers:{'Content-Type':'application/json','Access-Control-Allow-Origin':'*'}   
+    }).then((response)=>{
+      console.log(response)
+      setResult(response.data)
+    }).catch((error)=>{
+      console.log(error)
+    })
+  }
+  setInterval(function(){
+    setData(data+1)
+    if(result==='a'||result==='b'){
+      clearInterval()
+    }
+  },4000)
+ 
   return (
     <div className={classes.root}>
     
