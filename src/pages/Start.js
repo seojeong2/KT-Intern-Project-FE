@@ -17,12 +17,19 @@ const Start = () => {
         <StyledButton
           color="green"
           onClick={() => {
-            navigate("/select");
+            navigate("/login");
           }}
         >
           시작하기
         </StyledButton>
-        <StyledButton color="red">종료하기</StyledButton>
+        <StyledButton
+          color="red"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          종료하기
+        </StyledButton>
       </div>
     </div>
   );

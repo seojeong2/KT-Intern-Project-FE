@@ -103,14 +103,30 @@ const Main = () => {
         <div class="fifth_letter04"></div>
         <div class="fifth_letter05"></div>
       </div>
-      <img
-        class="startbutton"
-        src={namecard}
-        style={{ width: "100px", height: "60px", marginTop: "30px" }}
-        onClick={() => {
-          navigate("/start");
+      <div
+        className="a"
+        style={{
+          flexDirection: "column",
+          display: "flex",
+          alignItems: "center",
+          color: "white",
+          fontFamily: "koryeo",
         }}
-      ></img>
+      >
+        click here!
+        <img
+          class="startbutton"
+          src={namecard}
+          style={{
+            width: "100px",
+            height: "60px",
+            marginTop: "10px",
+          }}
+          onClick={() => {
+            navigate("/start");
+          }}
+        ></img>
+      </div>
     </div>
   );
 };
