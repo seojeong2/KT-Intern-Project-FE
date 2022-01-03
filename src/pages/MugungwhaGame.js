@@ -4,10 +4,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button, Grid, Paper } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { StyledButton } from "../components/Styled";
-import TPose from '../img/TPose.jpg'
+import T from '../img/TPose.jpg'
+import Tree from '../img/Tree Pose.jpg'
+import Warrior from '../img/Warrior Pose.jpg'
 import music from '../sound/assets_sound.wav'
 import axios from 'axios'
-
+import great from '../img/great.png';
+import soso from '../img/soso.png';
+import { SettingsPowerSharp } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -25,16 +29,18 @@ const MugungwhaGame = () => {
   const navigate = useNavigate();
   const [data,setData]=useState(0);
   const [result,setResult]=useState(0);
-
+  const [start,setStart]=useState(false)
+  const [pose,setPose]=useState('')
   useEffect(()=>{
     ff()
   },[data])
-
+  useEffect(()=>{
+    intro()
+  },[])
   const ff =async()=>{
-
     await axios({
       method:'get',
-      url:'http://127.0.0.1:5100/result',
+      url:'http://127.0.0.1:5100/result_main',
       headers:{'Content-Type':'application/json','Access-Control-Allow-Origin':'*'}   
     }).then((response)=>{
       console.log(response)
@@ -43,21 +49,53 @@ const MugungwhaGame = () => {
       console.log(error)
     })
   }
+  const intro =async()=>{
+    await axios({
+      method:'get',
+      url:'http://127.0.0.1:5100/',
+      headers:{'Content-Type':'application/json','Access-Control-Allow-Origin':'*'}   
+    }).then((response)=>{
+      console.log(response)
+      setStart(true)
+      setPose(response.data)
+    }).catch((error)=>{
+      console.log(error)
+    })
+  }
+{
   setInterval(function(){
     setData(data+1)
-    if(result==='a'||result==='b'){
+    if(result===1||result===2||result===3){
       clearInterval()
     }
   },4000)
- 
+}
   return (
     <div className={classes.root}>
     
       <Grid container spacing={3}>
         <Grid item xs={3}>
           <Paper className={classes.paper}>
-          <img src={TPose} width='100%' height='600px'/>
-          <img src="http://localhost:5100/move_main" width="100%"></img>
+            {result===0&&
+              <div>
+                {pose==='T Pose'&&<img src={T} width='100%' height='600px'/>}
+                {pose==='Tree Pose'&&<img src={Tree} width='100%' height='600px'/>}
+                {pose==='Warrior Pose'&&<img src={Warrior} width='100%' height='600px'/>}
+                <img src="http://localhost:5100/move_main" width="100%"></img>
+              </div>
+            }
+            {
+              result===1&&
+                <img src={great} width="100%" />
+            }
+            {
+              result===2&&
+                <img src={soso} width="100%" />
+            }
+            {
+              result===3&&
+                <img src={soso} width="100%" />
+            }
           </Paper>
         </Grid>
         <Grid item xs={6}>
