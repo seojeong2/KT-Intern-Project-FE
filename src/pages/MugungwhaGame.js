@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import yeongheefront from "../img/yeongheefront.png";
+import yeongheeback from "../img/yeongheeback.png";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Grid, Paper } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { StyledButton } from "../components/Styled";
-import T from '../img/TPose.jpg'
-import Tree from '../img/Tree Pose.jpg'
-import Warrior from '../img/Warrior Pose.jpg'
+import T from '../img/TPose.jpeg'
+import Tree from '../img/Tree.jpg'
+import Warrior from '../img/Warrior.jpg'
 import music from '../sound/assets_sound.wav'
 import axios from 'axios'
 import great from '../img/great.png';
@@ -31,11 +32,22 @@ const MugungwhaGame = () => {
   const [result,setResult]=useState(0);
   const [start,setStart]=useState(false)
   const [pose,setPose]=useState('')
+  const [sound,setSound]=useState(false)
   useEffect(()=>{
-    ff()
+    setResult(0)
+    setInterval(function(){
+      ff()
+      setData(data+1)
+      if(result===1||result===2||result===3){
+        clearInterval()
+      }
+    },4000)
   },[data])
   useEffect(()=>{
     intro()
+    setTimeout(function(){
+      setSound(true)
+    },7000)
   },[])
   const ff =async()=>{
     await axios({
@@ -62,53 +74,89 @@ const MugungwhaGame = () => {
       console.log(error)
     })
   }
-{
-  setInterval(function(){
-    setData(data+1)
-    if(result===1||result===2||result===3){
-      clearInterval()
-    }
-  },4000)
-}
+
+
+
   return (
     <div className={classes.root}>
-    
       <Grid container spacing={3}>
         <Grid item xs={3}>
           <Paper className={classes.paper}>
-            {result===0&&
               <div>
                 {pose==='T Pose'&&<img src={T} width='100%' height='600px'/>}
                 {pose==='Tree Pose'&&<img src={Tree} width='100%' height='600px'/>}
                 {pose==='Warrior Pose'&&<img src={Warrior} width='100%' height='600px'/>}
                 <img src="http://localhost:5100/move_main" width="100%"></img>
               </div>
-            }
-            {
-              result===1&&
-                <img src={great} width="100%" />
-            }
-            {
-              result===2&&
-                <img src={soso} width="100%" />
-            }
-            {
-              result===3&&
-                <img src={soso} width="100%" />
-            }
           </Paper>
         </Grid>
         <Grid item xs={6}>
           <Paper className={classes.paper}>
-          <img src="http://localhost:5100/pose_main" width="100%" height='880px'></img>
+            {result===0&&
+            <img src="http://localhost:5100/pose_main" width="100%" height='880px'></img>
+            }
+            {
+              result===1&&
+              <div>
+                <img src={great} width="100%" />
+                <button 
+            style={{
+              width: '140px',
+              height: '70px',
+              backgroundColor: 'red',
+              fontWeight: 'bold',
+              fontSize: '35px',
+              borderRadius: '20px',
+              color: 'white',
+              fontFamily:'koryeo'}}
+            onClick={()=>{navigate("/retry")
+            setResult(0)}}>종료</button>
+            </div>
+            }
+            {
+              result===2&&
+              <div>
+                <img src={great} width="100%" />
+                <button 
+            style={{
+              width: '140px',
+              height: '70px',
+              backgroundColor: 'red',
+              fontWeight: 'bold',
+              fontSize: '35px',
+              borderRadius: '20px',
+              color: 'white',
+              fontFamily:'koryeo'}}
+            onClick={()=>{navigate("/retry")
+            setResult(0)}}>종료</button>
+            </div>
+            }
+            {
+              result===3&&
+              <div>
+                <img src={great} width="100%" />
+                <button 
+            style={{
+              width: '140px',
+              height: '70px',
+              backgroundColor: 'red',
+              fontWeight: 'bold',
+              fontSize: '35px',
+              borderRadius: '20px',
+              color: 'white',
+              fontFamily:'koryeo'}}
+            onClick={()=>{navigate("/retry")
+            setResult(0)}}>종료</button>
+            </div>
+            }
           </Paper>
         </Grid>
         <Grid item xs={3}>
           <Paper className={classes.paper}>
-            <img src={yeongheefront} alt="관리자" width="100%"></img>
-           
-          
-            <button
+            {sound===false&&<img src={yeongheeback} alt="관리자" width="100%"></img>}
+            {sound===true&&<img src={yeongheefront} alt="관리자" width="100%"></img>}
+            {result===0&&
+          <button
               style={{
                 width: '140px',
                 height: '70px',
@@ -118,10 +166,11 @@ const MugungwhaGame = () => {
                 borderRadius: '20px',
                 color: 'white',
                 fontFamily:'koryeo'}}
-              onClick={() => navigate("/retry")}
+              onClick={() => {navigate("/retry")
+              setResult(0)}}
             >
               그만!
-            </button>
+            </button>}
           </Paper>
         </Grid>
       </Grid>
