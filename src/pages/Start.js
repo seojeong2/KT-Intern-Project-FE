@@ -22,7 +22,14 @@ const Start = () => {
         >
           시작하기
         </StyledButton>
-        <StyledButton color="red">종료하기</StyledButton>
+        <StyledButton
+          color="red"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          종료하기
+        </StyledButton>
       </div>
     </div>
   );
