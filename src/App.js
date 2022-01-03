@@ -11,6 +11,8 @@ import MugungwhaGame from "./pages/MugungwhaGame";
 import Retry from "./pages/Retry";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ChamchamchamIntro from "./pages/ChamchamchamIntro";
+import ChamchamchamGame from "./pages/ChamchamchamGame";
 
 function App() {
   return (
@@ -23,7 +25,9 @@ function App() {
           exact={true}
           path="/mugungwhaintro"
           element={<MugungwhaIntro />}
-        />
+        />        
+        <Route exact={true} path="/chamchamchamgame" element={<ChamchamchamGame />} />
+        <Route exact={true} path="/chamchamchamintro" element={<ChamchamchamIntro />} />
         <Route exact={true} path="/dalgonaintro" element={<DalgonaIntro />} />
         <Route exact={true} path="/rspintro" element={<RspIntro />} />
         <Route exact={true} path="/dalgonagame" element={<DalgonaGame />} />

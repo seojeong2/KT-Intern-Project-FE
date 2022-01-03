@@ -12,6 +12,7 @@ import music from '../sound/assets_sound.wav'
 import axios from 'axios'
 import great from '../img/great.png';
 import soso from '../img/soso.png';
+import fail from '../img/fail.png';
 import { SettingsPowerSharp } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,7 +35,6 @@ const MugungwhaGame = () => {
   const [pose,setPose]=useState('')
   const [sound,setSound]=useState(false)
   useEffect(()=>{
-    setResult(0)
     setInterval(function(){
       ff()
       setData(data+1)
@@ -109,14 +109,13 @@ const MugungwhaGame = () => {
               borderRadius: '20px',
               color: 'white',
               fontFamily:'koryeo'}}
-            onClick={()=>{navigate("/retry")
-            setResult(0)}}>종료</button>
+            onClick={()=>{navigate("/retry")}}>종료</button>
             </div>
             }
             {
               result===2&&
               <div>
-                <img src={great} width="100%" />
+                <img src={soso} width="100%" />
                 <button 
             style={{
               width: '140px',
@@ -127,14 +126,13 @@ const MugungwhaGame = () => {
               borderRadius: '20px',
               color: 'white',
               fontFamily:'koryeo'}}
-            onClick={()=>{navigate("/retry")
-            setResult(0)}}>종료</button>
+            onClick={()=>{navigate("/retry")}}>종료</button>
             </div>
             }
             {
               result===3&&
               <div>
-                <img src={great} width="100%" />
+                <img src={fail} width="100%" />
                 <button 
             style={{
               width: '140px',
@@ -145,8 +143,7 @@ const MugungwhaGame = () => {
               borderRadius: '20px',
               color: 'white',
               fontFamily:'koryeo'}}
-            onClick={()=>{navigate("/retry")
-            setResult(0)}}>종료</button>
+            onClick={()=>{navigate("/retry")}}>종료</button>
             </div>
             }
           </Paper>
@@ -166,8 +163,7 @@ const MugungwhaGame = () => {
                 borderRadius: '20px',
                 color: 'white',
                 fontFamily:'koryeo'}}
-              onClick={() => {navigate("/retry")
-              setResult(0)}}
+              onClick={() => {navigate("/retry")}}
             >
               그만!
             </button>}
