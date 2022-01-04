@@ -8,7 +8,6 @@ import { StyledButton } from "../components/Styled";
 import T from '../img/TPose.jpeg'
 import Tree from '../img/Tree.jpg'
 import Warrior from '../img/Warrior.jpg'
-import music from '../sound/assets_sound.wav'
 import axios from 'axios'
 import great from '../img/great.png';
 import soso from '../img/soso.png';
@@ -34,12 +33,14 @@ const MugungwhaGame = () => {
   const [start,setStart]=useState(false)
   const [pose,setPose]=useState('')
   const [sound,setSound]=useState(false)
+  const refreshPage = ()=>{
+    window.location.reload();
+ }
   useEffect(()=>{
-    setInterval(function(){
+    setTimeout(function(){
       ff()
-      setData(data+1)
-      if(result===1||result===2||result===3){
-        clearInterval()
+      if(result===0){
+        setData(data+1)
       }
     },4000)
   },[data])
@@ -109,7 +110,8 @@ const MugungwhaGame = () => {
               borderRadius: '20px',
               color: 'white',
               fontFamily:'koryeo'}}
-            onClick={()=>{navigate("/retry")}}>종료</button>
+            onClick={()=>{navigate("/retry")
+            refreshPage()}}>종료</button>
             </div>
             }
             {
@@ -126,7 +128,8 @@ const MugungwhaGame = () => {
               borderRadius: '20px',
               color: 'white',
               fontFamily:'koryeo'}}
-            onClick={()=>{navigate("/retry")}}>종료</button>
+            onClick={()=>{navigate("/retry")
+            refreshPage()}}>종료</button>
             </div>
             }
             {
@@ -143,7 +146,8 @@ const MugungwhaGame = () => {
               borderRadius: '20px',
               color: 'white',
               fontFamily:'koryeo'}}
-            onClick={()=>{navigate("/retry")}}>종료</button>
+            onClick={()=>{navigate("/retry")
+            refreshPage()}}>종료</button>
             </div>
             }
           </Paper>
@@ -163,7 +167,8 @@ const MugungwhaGame = () => {
                 borderRadius: '20px',
                 color: 'white',
                 fontFamily:'koryeo'}}
-              onClick={() => {navigate("/retry")}}
+              onClick={() => {navigate("/retry")
+            refreshPage()}}
             >
               그만!
             </button>}
