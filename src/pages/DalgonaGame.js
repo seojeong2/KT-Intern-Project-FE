@@ -44,11 +44,28 @@ const DalgonaGame = () => {
   },4000)
 },[data])
   
-  const ff =async()=>{
+  const ff = async () => {
+    await axios({
+      method: "get",
+      url: "http://127.0.0.1:5000/rr",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        setResult(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const sendResult = async () => {
     await axios({
       method: "post",
       url: "http://172.30.1.42:8080/api/Dalgona",
-      data: { username: username, score: 15 },
+      data: { username: username, score: parseInt(result) },
     })
       .then((res) => {
         console.log(res);
@@ -57,7 +74,6 @@ const DalgonaGame = () => {
         console.log(err);
       });
   };
-
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
