@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import squidManager from "../img/circle_left.png";
 import axios from "axios";
+import { useSelector } from "react-redux";
 import great from "../img/great.jpeg";
 import soso from "../img/soso.jpeg";
 import fail from '../img/fail.png';
@@ -24,10 +25,16 @@ const DalgonaGame = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [result, setResult] = useState(0);
-  const [data,setData]=useState(0);
-  const refreshPage = ()=>{
+  const [data, setData] = useState(0);
+
+  const { username } = useSelector((state) => ({
+    username: state.username,
+  }));
+
+  const refreshPage = () => {
     window.location.reload();
- }
+  };
+  
  useEffect(()=>{
   setTimeout(function(){
     ff()
@@ -39,17 +46,17 @@ const DalgonaGame = () => {
   
   const ff =async()=>{
     await axios({
-      method:'get',
-      url:'http://127.0.0.1:5000/rr',
-      headers:{'Content-Type':'application/json','Access-Control-Allow-Origin':'*'}   
-    }).then((response)=>{
-      console.log(response)
-      setResult(response.data)
-    }).catch((error)=>{
-      console.log(error)
+      method: "post",
+      url: "http://172.30.1.42:8080/api/Dalgona",
+      data: { username: username, score: 15 },
     })
-  }
-  
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className={classes.root}>
@@ -73,9 +80,10 @@ const DalgonaGame = () => {
                     fontFamily: "koryeo",
                   }}
                   onClick={() => {
+                    sendResult();
                     navigate("/retry");
-                    refreshPage()
 
+                    refreshPage();
                   }}
                 >
                   종료
@@ -98,6 +106,7 @@ const DalgonaGame = () => {
                     fontFamily: "koryeo",
                   }}
                   onClick={() => {
+                    sendResult();
                     navigate("/retry");
                     refreshPage()
                   }}
@@ -123,20 +132,45 @@ const DalgonaGame = () => {
                   }}
                   onClick={() => {
                     navigate("/retry");
-                    refreshPage()
-
+                    refreshPage();
                   }}
                 >
                   종료
                 </button>
               </div>
             )}
+            {result === 3 ||
+              (result === 4 && (
+                <div>
+                  <img src={great} width="100%" />
+                  <button
+                    style={{
+                      width: "140px",
+                      height: "70px",
+                      backgroundColor: "red",
+                      fontWeight: "bold",
+                      fontSize: "35px",
+                      borderRadius: "20px",
+                      color: "white",
+                      fontFamily: "koryeo",
+                    }}
+                    onClick={() => {
+                      sendResult();
+                      navigate("/retry");
+
+                      refreshPage();
+                    }}
+                  >
+                    종료
+                  </button>
+                </div>
+              ))}
           </Paper>
         </Grid>
         <Grid item xs={4}>
           <Paper className={classes.paper}>
             <img src="http://127.0.0.1:5000/video_feed1" width="100%" />
-            </Paper>
+          </Paper>
         </Grid>
         <Grid item xs={3}>
           <Paper className={classes.paper}>
@@ -154,9 +188,10 @@ const DalgonaGame = () => {
                   fontFamily: "koryeo",
                 }}
                 onClick={() => {
+                  sendResult();
                   navigate("/retry");
-                  refreshPage()
 
+                  refreshPage();
                 }}
               >
                 그만!

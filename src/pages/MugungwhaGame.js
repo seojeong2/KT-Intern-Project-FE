@@ -4,6 +4,7 @@ import yeongheeback from "../img/yeongheeback.png";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Grid, Paper } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import T from '../img/TPose.jpeg'
 import Tree from '../img/Tree.jpg'
 import Warrior from '../img/Warrior.jpg'
@@ -11,6 +12,7 @@ import axios from 'axios'
 import great from '../img/great.jpeg';
 import soso from '../img/soso.jpeg';
 import fail from '../img/fail.png';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -31,6 +33,10 @@ const MugungwhaGame = () => {
   const [start,setStart]=useState(false)
   const [pose,setPose]=useState('')
   const [sound,setSound]=useState(false)
+  
+  const { username } = useSelector((state) => ({
+    username: state.username,
+  }));
   const refreshPage = ()=>{
     window.location.reload();
  }
@@ -40,53 +46,79 @@ const MugungwhaGame = () => {
       if(result===0){
         setData(data+1)
       }
-    },4000)
-  },[data])
-  useEffect(()=>{
-    intro()
-    setTimeout(function(){
-      setSound(true)
-    },7000)
-  },[])
-  const ff =async()=>{
+    }, 4000);
+  }, [data]);
+  useEffect(() => {
+    intro();
+    setTimeout(function () {
+      setSound(true);
+    }, 7000);
+  }, []);
+  const ff = async () => {
     await axios({
-      method:'get',
-      url:'http://127.0.0.1:5100/result_main',
-      headers:{'Content-Type':'application/json','Access-Control-Allow-Origin':'*'}   
-    }).then((response)=>{
-      console.log(response)
-      setResult(response.data)
-    }).catch((error)=>{
-      console.log(error)
+      method: "get",
+      url: "http://127.0.0.1:5100/result_main",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
     })
-  }
-  const intro =async()=>{
+      .then((response) => {
+        console.log(response);
+        setResult(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const intro = async () => {
     await axios({
-      method:'get',
-      url:'http://127.0.0.1:5100/',
-      headers:{'Content-Type':'application/json','Access-Control-Allow-Origin':'*'}   
-    }).then((response)=>{
-      console.log(response)
-      setStart(true)
-      setPose(response.data)
-    }).catch((error)=>{
-      console.log(error)
+      method: "get",
+      url: "http://127.0.0.1:5100/",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
     })
-  }
+      .then((response) => {
+        console.log(response);
+        setStart(true);
+        setPose(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-
+  const sendResult = async () => {
+    await axios({
+      method: "post",
+      url: "http://172.30.1.42:8080/api/saveMugungwhaPoint",
+      data: { username: username, score: 15 },
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={3}>
           <Paper className={classes.paper}>
-              <div>
-                {pose==='T Pose'&&<img src={T} width='100%' height='600px'/>}
-                {pose==='Tree Pose'&&<img src={Tree} width='100%' height='600px'/>}
-                {pose==='Warrior Pose'&&<img src={Warrior} width='100%' height='600px'/>}
-                <img src="http://localhost:5100/move_main" width="100%"></img>
-              </div>
+            <div>
+              {pose === "T Pose" && <img src={T} width="100%" height="600px" />}
+              {pose === "Tree Pose" && (
+                <img src={Tree} width="100%" height="600px" />
+              )}
+              {pose === "Warrior Pose" && (
+                <img src={Warrior} width="100%" height="600px" />
+              )}
+              <img src="http://localhost:5100/move_main" width="100%"></img>
+            </div>
           </Paper>
         </Grid>
         <Grid item xs={6}>
@@ -110,6 +142,7 @@ const MugungwhaGame = () => {
               color: 'white',
               fontFamily:'koryeo'}}
             onClick={()=>{navigate("/retry")
+            sendResult();
             refreshPage()}}>종료</button>
             </div>
             }
@@ -129,6 +162,7 @@ const MugungwhaGame = () => {
               color: 'white',
               fontFamily:'koryeo'}}
             onClick={()=>{navigate("/retry")
+            sendResult();
             refreshPage()}}>종료</button>
             </div>
             }
@@ -148,6 +182,7 @@ const MugungwhaGame = () => {
               color: 'white',
               fontFamily:'koryeo'}}
             onClick={()=>{navigate("/retry")
+            sendResult();
             refreshPage()}}>종료</button>
             </div>
             }
@@ -169,6 +204,7 @@ const MugungwhaGame = () => {
                 color: 'white',
                 fontFamily:'koryeo'}}
               onClick={() => {navigate("/retry")
+             sendResult();
             refreshPage()}}
             >
               그만!

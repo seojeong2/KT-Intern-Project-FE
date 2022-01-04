@@ -3,6 +3,7 @@ import managerImage from "../img/manager.png";
 import { GameListButton } from "../components/Styled";
 import { useNavigate } from "react-router-dom";
 import { Grid, makeStyles, Paper } from "@material-ui/core";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 const GameSelect = ({ props }) => {
   const classes = useStyles();
   const navigate = useNavigate();
+
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
@@ -67,6 +69,13 @@ const GameSelect = ({ props }) => {
               }}
             >
               참참참 게임
+            </GameListButton>
+            <GameListButton
+              onClick={() => {
+                navigate("/result");
+              }}
+            >
+              랭킹 보기
             </GameListButton>
           </Paper>
         </Grid>

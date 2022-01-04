@@ -133,7 +133,7 @@ const Main = () => {
             marginTop: "10px",
           }}
           onClick={() => {
-            audio.pause()
+            audio.pause();
             navigate("/start");
           }}
         ></img>
