@@ -65,10 +65,10 @@ const GameSelect = ({ props }) => {
             </GameListButton>
             <GameListButton
               onClick={() => {
-                navigate("/chamchamchamintro");
+                navigate("/dbdbdipintro");
               }}
             >
-              참참참 게임
+              ◯△☐ 디비디비딥
             </GameListButton>
             <GameListButton
               onClick={() => {

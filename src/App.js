@@ -10,8 +10,8 @@ import DalgonaGame from "./pages/DalgonaGame";
 import MugungwhaGame from "./pages/MugungwhaGame";
 import Retry from "./pages/Retry";
 import Register from "./pages/Register";
-import ChamchamchamIntro from "./pages/ChamchamchamIntro";
-import ChamchamchamGame from "./pages/ChamchamchamGame";
+import DbdbdipIntro from "./pages/DbdbdipIntro";
+import DbdbdipGame from "./pages/DbdbdipGame";
 import Result from "./pages/Result";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
@@ -34,13 +34,13 @@ function App() {
           />
           <Route
             exact={true}
-            path="/chamchamchamgame"
-            element={<ChamchamchamGame />}
+            path="/dbdbdipgame"
+            element={<DbdbdipGame />}
           />
           <Route
             exact={true}
-            path="/chamchamchamintro"
-            element={<ChamchamchamIntro />}
+            path="/dbdbdipintro"
+            element={<DbdbdipIntro />}
           />
           <Route exact={true} path="/dalgonaintro" element={<DalgonaIntro />} />
           <Route exact={true} path="/rspintro" element={<RspIntro />} />
