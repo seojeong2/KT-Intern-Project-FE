@@ -43,11 +43,18 @@ const Register = () => {
     <div>
       <HeadTitle>아이디 등록!</HeadTitle>
       <div
+        style={{display:'flex',
+                flexDirection:'row',
+                alignItems: "center",
+                justifyContent: "center",}}
+      >
+      <div
         className="form"
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          flexDirection:'column'
         }}
       >
         <input
@@ -61,6 +68,7 @@ const Register = () => {
             fontSize: "30px",
             borderRadius: "10px",
             textAlign: "center",
+            marginBottom:'10px'
           }}
         />
         <input
@@ -76,20 +84,19 @@ const Register = () => {
             textAlign: "center",
           }}
         />
-
-        <StyledButton
+      </div>
+      <StyledButton
           color="green"
-          style={{ width: "200px", height: "150px" }}
+          style={{marginRight:'0px'}}
           onClick={() => {
-            //navigate("/register");
             dispatch({ type: "SAVE_USERNAME", username });
             sendInfo();
             navigate("/select");
           }}
         >
-          캐릭터 만들러 가기!
+          등록!
         </StyledButton>
-      </div>
+        </div>
     </div>
   );
 };

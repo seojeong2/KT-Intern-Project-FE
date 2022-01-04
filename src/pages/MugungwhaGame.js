@@ -94,7 +94,7 @@ const MugungwhaGame = () => {
     await axios({
       method: "post",
       url: "http://172.30.1.42:8080/api/saveMugungwhaPoint",
-      data: { username: username, score: 15 },
+      data: { username: username, score: parseInt(result) },
     })
       .then((res) => {
         console.log(res);
