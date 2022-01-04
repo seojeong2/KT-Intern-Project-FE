@@ -5,6 +5,7 @@ import squidManager from "../img/circle_left.png";
 import axios from "axios";
 import great from "../img/great.png";
 import soso from "../img/soso.png";
+import fail from '../img/fail.png';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,7 +60,7 @@ const DalgonaGame = () => {
             {result === 0 && <img src="http://127.0.0.1:5000/video_feed" width="100%" />}
             {result === 1 && (
               <div>
-                <img src={soso} width="100%" />
+                <img src={great} width="100%" />
                 <button
                   style={{
                     width: "140px",
@@ -106,7 +107,7 @@ const DalgonaGame = () => {
             )}
             {result === 3||result===4 && (
               <div>
-                <img src={great} width="100%" />
+                <img src={fail} width="100%" />
                 <button
                   style={{
                     width: "140px",
