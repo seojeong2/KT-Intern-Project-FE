@@ -4,15 +4,13 @@ import yeongheeback from "../img/yeongheeback.png";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Grid, Paper } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
-import { StyledButton } from "../components/Styled";
 import T from '../img/TPose.jpeg'
 import Tree from '../img/Tree.jpg'
 import Warrior from '../img/Warrior.jpg'
 import axios from 'axios'
-import great from '../img/great.png';
-import soso from '../img/soso.png';
+import great from '../img/great.jpeg';
+import soso from '../img/soso.jpeg';
 import fail from '../img/fail.png';
-import { SettingsPowerSharp } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -97,8 +95,9 @@ const MugungwhaGame = () => {
             <img src="http://localhost:5100/pose_main" width="100%" height='880px'></img>
             }
             {
-              result===1&&
+              result>=75&&
               <div>
+                <h1>{result}점</h1>
                 <img src={great} width="100%" />
                 <button 
             style={{
@@ -115,8 +114,9 @@ const MugungwhaGame = () => {
             </div>
             }
             {
-              result===2&&
+              (result>=50 && result<75) &&
               <div>
+                <h1>{result}점</h1>
                 <img src={soso} width="100%" />
                 <button 
             style={{
@@ -133,8 +133,9 @@ const MugungwhaGame = () => {
             </div>
             }
             {
-              result===3&&
+              (result<50&&result!=0) &&
               <div>
+                <h1>{result}점</h1>
                 <img src={fail} width="100%" />
                 <button 
             style={{
