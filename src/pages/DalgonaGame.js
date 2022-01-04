@@ -31,7 +31,7 @@ const DalgonaGame = () => {
     setInterval(function(){
       ff()
       setData(data+1)
-      if(result===1||result===2||result===3){
+      if(result===1||result===2||result===3||result===4){
         clearInterval()
       }
     },4000)
@@ -104,7 +104,7 @@ const DalgonaGame = () => {
                 </button>
               </div>
             )}
-            {result === 3 && (
+            {result === 3||result===4 && (
               <div>
                 <img src={great} width="100%" />
                 <button
