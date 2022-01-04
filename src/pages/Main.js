@@ -2,19 +2,19 @@ import React, { useEffect } from "react";
 import "./Main.css";
 import namecard from "../img/namecard.png";
 import { useNavigate } from "react-router-dom";
-import mainBGM from "../sound/mainbgm3.wav";
+import mainBGM from '../sound/mainbgm3.wav'
 
 const Main = () => {
   const navigate = useNavigate();
-  const audio = new Audio("");
-  const playBGM = () => {
-    audio.play();
-    audio.muted = false;
-    audio.loop = true;
-  };
-  useEffect(() => {
-    playBGM();
-  }, []);
+  const audio = new Audio(mainBGM)
+  const playBGM = () =>{
+    audio.play()
+    audio.muted = false
+    audio.loop = true
+  }
+  useEffect(()=>{
+    playBGM()
+  },[])
 
   return (
     <div>

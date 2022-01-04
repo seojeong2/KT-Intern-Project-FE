@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import squidManager from "../img/circle_left.png";
 import axios from "axios";
-import great from "../img/great.png";
-import soso from "../img/soso.png";
 import { useSelector } from "react-redux";
+import great from "../img/great.jpeg";
+import soso from "../img/soso.jpeg";
+import fail from '../img/fail.png';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,35 +34,17 @@ const DalgonaGame = () => {
   const refreshPage = () => {
     window.location.reload();
   };
-  useEffect(() => {
-    setInterval(function () {
-      ff();
-      setData(data + 1);
-      if (result === 1 || result === 2 || result === 3 || result === 4) {
-        clearInterval();
-      }
-    }, 4000);
-  }, [data]);
-
-  const ff = async () => {
-    await axios({
-      method: "get",
-      url: "http://127.0.0.1:5000/rr",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    })
-      .then((response) => {
-        console.log(response);
-        setResult(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const sendResult = async () => {
+  
+ useEffect(()=>{
+  setTimeout(function(){
+    ff()
+    if(result===0){
+      setData(data+1)
+    }
+  },4000)
+},[data])
+  
+  const ff =async()=>{
     await axios({
       method: "post",
       url: "http://172.30.1.42:8080/api/Dalgona",
@@ -80,12 +63,11 @@ const DalgonaGame = () => {
       <Grid container spacing={3}>
         <Grid item xs={5}>
           <Paper className={classes.paper}>
-            {result === 0 && (
-              <img src="http://127.0.0.1:5000/video_feed" width="100%" />
-            )}
-            {result === 1 && (
+            {result === 0 && <img src="http://127.0.0.1:5000/video_feed" width="100%" />}
+            {result >=85 && (
               <div>
-                <img src={soso} width="100%" />
+                <h1>{result}점</h1>
+                <img src={great} width="100%" />
                 <button
                   style={{
                     width: "140px",
@@ -108,8 +90,9 @@ const DalgonaGame = () => {
                 </button>
               </div>
             )}
-            {result === 2 && (
+            {(result >=75 && result<85) && (
               <div>
+                <h1>{result}점</h1>
                 <img src={soso} width="100%" />
                 <button
                   style={{
@@ -125,7 +108,30 @@ const DalgonaGame = () => {
                   onClick={() => {
                     sendResult();
                     navigate("/retry");
-
+                    refreshPage()
+                  }}
+                >
+                  종료
+                </button>
+              </div>
+            )}
+            {(result<75&&result>0)&& (
+              <div>
+                <h1>{result}점</h1>
+                <img src={fail} width="100%" />
+                <button
+                  style={{
+                    width: "140px",
+                    height: "70px",
+                    backgroundColor: "red",
+                    fontWeight: "bold",
+                    fontSize: "35px",
+                    borderRadius: "20px",
+                    color: "white",
+                    fontFamily: "koryeo",
+                  }}
+                  onClick={() => {
+                    navigate("/retry");
                     refreshPage();
                   }}
                 >
