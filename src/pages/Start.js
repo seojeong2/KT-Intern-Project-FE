@@ -17,7 +17,7 @@ const Start = () => {
         <StyledButton
           color="green"
           onClick={() => {
-            navigate("/select");
+            navigate("/register");
           }}
         >
           시작하기
