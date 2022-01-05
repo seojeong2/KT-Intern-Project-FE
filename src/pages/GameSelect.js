@@ -35,6 +35,12 @@ const GameSelect = ({ props }) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
+  const { username } = useSelector((state) => ({
+    username: state.username,
+  }));
+
+  console.log("username", username);
+
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>

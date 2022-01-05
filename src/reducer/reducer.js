@@ -8,6 +8,8 @@ const reducer = (state = initialState, action) => {
     case SAVE_USERNAME: {
       return { ...state, username: action.username };
     }
+    default:
+      return state;
   }
 };
 

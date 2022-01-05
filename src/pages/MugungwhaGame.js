@@ -5,13 +5,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button, Grid, Paper } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import T from '../img/TPose.jpeg'
-import Tree from '../img/Tree.jpg'
-import Warrior from '../img/Warrior.jpg'
-import axios from 'axios'
-import great from '../img/great.jpeg';
-import soso from '../img/soso.jpeg';
-import fail from '../img/fail.png';
+import T from "../img/TPose.jpeg";
+import Tree from "../img/Tree.jpg";
+import Warrior from "../img/Warrior.jpg";
+import axios from "axios";
+import great from "../img/great.jpeg";
+import soso from "../img/soso.jpeg";
+import fail from "../img/fail.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,23 +28,25 @@ const useStyles = makeStyles((theme) => ({
 const MugungwhaGame = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const [data,setData]=useState(0);
-  const [result,setResult]=useState(0);
-  const [start,setStart]=useState(false)
-  const [pose,setPose]=useState('')
-  const [sound,setSound]=useState(false)
-  
+  const [data, setData] = useState(0);
+  const [result, setResult] = useState(0);
+  const [start, setStart] = useState(false);
+  const [pose, setPose] = useState("");
+  const [sound, setSound] = useState(false);
+
   const { username } = useSelector((state) => ({
     username: state.username,
   }));
-  const refreshPage = ()=>{
+
+  const [user, setUser] = useState(username);
+  const refreshPage = () => {
     window.location.reload();
- }
-  useEffect(()=>{
-    setTimeout(function(){
-      ff()
-      if(result===0){
-        setData(data+1)
+  };
+  useEffect(() => {
+    setTimeout(function () {
+      ff();
+      if (result === 0) {
+        setData(data + 1);
       }
     }, 4000);
   }, [data]);
@@ -93,8 +95,8 @@ const MugungwhaGame = () => {
   const sendResult = async () => {
     await axios({
       method: "post",
-      url: "http://172.30.1.42:8080/api/saveMugungwhaPoint",
-      data: { username: username, score: parseInt(result) },
+      url: "http://172.30.1.3:8080/api/saveMugungwhaPoint",
+      data: { username: user, score: parseInt(result) },
     })
       .then((res) => {
         console.log(res);
@@ -123,96 +125,123 @@ const MugungwhaGame = () => {
         </Grid>
         <Grid item xs={6}>
           <Paper className={classes.paper}>
-            {result===0&&
-            <img src="http://localhost:5100/pose_main" width="100%" height='880px'></img>
-            }
-            {
-              result>=75&&
+            {result === 0 && (
+              <img
+                src="http://localhost:5100/pose_main"
+                width="100%"
+                height="880px"
+              ></img>
+            )}
+            {result >= 75 && (
               <div>
                 <h1>{result}점</h1>
                 <img src={great} width="100%" />
-                <button 
-            style={{
-              width: '140px',
-              height: '70px',
-              backgroundColor: 'red',
-              fontWeight: 'bold',
-              fontSize: '35px',
-              borderRadius: '20px',
-              color: 'white',
-              fontFamily:'koryeo'}}
-            onClick={()=>{navigate("/retry")
-            sendResult();
-            refreshPage()}}>종료</button>
-            </div>
-            }
-            {
-              (result>=50 && result<75) &&
+                <button
+                  style={{
+                    width: "140px",
+                    height: "70px",
+                    backgroundColor: "red",
+                    fontWeight: "bold",
+                    fontSize: "35px",
+                    borderRadius: "20px",
+                    color: "white",
+                    fontFamily: "koryeo",
+                  }}
+                  onClick={() => {
+                    navigate("/retry");
+                    sendResult();
+                    refreshPage();
+                  }}
+                >
+                  종료
+                </button>
+              </div>
+            )}
+            {result >= 50 && result < 75 && (
               <div>
                 <h1>{result}점</h1>
                 <img src={soso} width="100%" />
-                <button 
-            style={{
-              width: '140px',
-              height: '70px',
-              backgroundColor: 'red',
-              fontWeight: 'bold',
-              fontSize: '35px',
-              borderRadius: '20px',
-              color: 'white',
-              fontFamily:'koryeo'}}
-            onClick={()=>{navigate("/retry")
-            sendResult();
-            refreshPage()}}>종료</button>
-            </div>
-            }
-            {
-              (result<50&&result!=0) &&
+                <button
+                  style={{
+                    width: "140px",
+                    height: "70px",
+                    backgroundColor: "red",
+                    fontWeight: "bold",
+                    fontSize: "35px",
+                    borderRadius: "20px",
+                    color: "white",
+                    fontFamily: "koryeo",
+                  }}
+                  onClick={() => {
+                    navigate("/retry");
+                    sendResult();
+                    refreshPage();
+                  }}
+                >
+                  종료
+                </button>
+              </div>
+            )}
+            {result < 50 && result != 0 && (
               <div>
                 <h1>{result}점</h1>
                 <img src={fail} width="100%" />
-                <button 
-            style={{
-              width: '140px',
-              height: '70px',
-              backgroundColor: 'red',
-              fontWeight: 'bold',
-              fontSize: '35px',
-              borderRadius: '20px',
-              color: 'white',
-              fontFamily:'koryeo'}}
-            onClick={()=>{navigate("/retry")
-            sendResult();
-            refreshPage()}}>종료</button>
-            </div>
-            }
+                <button
+                  style={{
+                    width: "140px",
+                    height: "70px",
+                    backgroundColor: "red",
+                    fontWeight: "bold",
+                    fontSize: "35px",
+                    borderRadius: "20px",
+                    color: "white",
+                    fontFamily: "koryeo",
+                  }}
+                  onClick={() => {
+                    navigate("/retry");
+                    sendResult();
+                    refreshPage();
+                  }}
+                >
+                  종료
+                </button>
+              </div>
+            )}
           </Paper>
         </Grid>
         <Grid item xs={3}>
           <Paper className={classes.paper}>
-            {sound===false&&<img src={yeongheeback} alt="관리자" width="100%"></img>}
-            {sound===true&&<img src={yeongheefront} alt="관리자" width="100%"></img>}
-            {result===0&&
-            <div>
-            {sound==true&&
-              <button
-              style={{
-                width: '140px',
-                height: '70px',
-                backgroundColor: 'red',
-                fontWeight: 'bold',
-                fontSize: '35px',
-                borderRadius: '20px',
-                color: 'white',
-                fontFamily:'koryeo'}}
-              onClick={() => {navigate("/retry")
-             sendResult();
-            refreshPage()}}
-            >
-              그만!
-            </button>
-            }</div>
-          }
+            {sound === false && (
+              <img src={yeongheeback} alt="관리자" width="100%"></img>
+            )}
+            {sound === true && (
+              <img src={yeongheefront} alt="관리자" width="100%"></img>
+            )}
+            {result === 0 && (
+              <div>
+                {sound == true && (
+                  <button
+                    style={{
+                      width: "140px",
+                      height: "70px",
+                      backgroundColor: "red",
+                      fontWeight: "bold",
+                      fontSize: "35px",
+                      borderRadius: "20px",
+                      color: "white",
+                      fontFamily: "koryeo",
+                    }}
+                    onClick={() => {
+                      navigate("/retry");
+                      sendResult();
+                      refreshPage();
+                    }}
+                  >
+                    그만!
+                  </button>
+                )}
+              </div>
+            )}
           </Paper>
         </Grid>
       </Grid>

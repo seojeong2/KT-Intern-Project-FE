@@ -6,7 +6,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import great from "../img/great.jpeg";
 import soso from "../img/soso.jpeg";
-import fail from '../img/fail.png';
+import fail from "../img/fail.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,20 +30,21 @@ const DalgonaGame = () => {
   const { username } = useSelector((state) => ({
     username: state.username,
   }));
+  const [user, setUser] = useState(username);
 
   const refreshPage = () => {
     window.location.reload();
   };
-  
- useEffect(()=>{
-  setTimeout(function(){
-    ff()
-    if(result===0){
-      setData(data+1)
-    }
-  },4000)
-},[data])
-  
+
+  useEffect(() => {
+    setTimeout(function () {
+      ff();
+      if (result === 0) {
+        setData(data + 1);
+      }
+    }, 4000);
+  }, [data]);
+
   const ff = async () => {
     await axios({
       method: "get",
@@ -64,8 +65,8 @@ const DalgonaGame = () => {
   const sendResult = async () => {
     await axios({
       method: "post",
-      url: "http://172.30.1.42:8080/api/Dalgona",
-      data: { username: username, score: parseInt(result) },
+      url: "http://172.30.1.3:8080/api/Dalgona",
+      data: { username: user, score: parseInt(result) },
     })
       .then((res) => {
         console.log(res);
@@ -79,8 +80,10 @@ const DalgonaGame = () => {
       <Grid container spacing={3}>
         <Grid item xs={5}>
           <Paper className={classes.paper}>
-            {result === 0 && <img src="http://127.0.0.1:5000/video_feed" width="100%" />}
-            {result >=85 && (
+            {result === 0 && (
+              <img src="http://127.0.0.1:5000/video_feed" width="100%" />
+            )}
+            {result >= 85 && (
               <div>
                 <h1>{result}점</h1>
                 <img src={great} width="100%" />
@@ -106,7 +109,7 @@ const DalgonaGame = () => {
                 </button>
               </div>
             )}
-            {(result >=75 && result<85) && (
+            {result >= 75 && result < 85 && (
               <div>
                 <h1>{result}점</h1>
                 <img src={soso} width="100%" />
@@ -124,14 +127,14 @@ const DalgonaGame = () => {
                   onClick={() => {
                     sendResult();
                     navigate("/retry");
-                    refreshPage()
+                    refreshPage();
                   }}
                 >
                   종료
                 </button>
               </div>
             )}
-            {(result<75&&result>0)&& (
+            {result < 75 && result > 0 && (
               <div>
                 <h1>{result}점</h1>
                 <img src={fail} width="100%" />
