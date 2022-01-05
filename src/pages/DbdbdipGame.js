@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import managerImage from "../img/manager.png";
 import { useNavigate } from "react-router-dom";
 import { Grid, makeStyles, Paper } from "@material-ui/core";
-import { useSelector } from "react-redux";
 import axios from 'axios'
 import great from '../img/great.jpeg';
-import soso from '../img/soso.jpeg';
 import fail from '../img/fail.png';
-
+import cir from "../img/cir.png"
+import squ from "../img/squ.jpeg"
+import tri from "../img/tri.jpeg"
+import { HeadTitle } from "../components/Styled";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     display: "flex",
     justifyContent: "center",
-    backgroundColor: "black",
+    backgroundColor: "white",
     color: theme.palette.text.secondary,
   },
   paperButton: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
-    backgroundColor: "black",
+    backgroundColor: "white",
     color: theme.palette.text.secondary,
   },
 }));
@@ -39,11 +39,11 @@ const DbdbdipGame = ({ props }) => {
   const navigate = useNavigate();
   const [data,setData]=useState(0);
   const [result,setResult]=useState(0);
-  const [start,setStart]=useState(false)
-  const [sound,setSound]=useState(false)
-  
+  const [answer,setAnswer]=useState(0)  
 
   const refreshPage = ()=>{
+    setResult(0)
+    setAnswer(0)
     window.location.reload();
  }
   useEffect(()=>{
@@ -52,21 +52,42 @@ const DbdbdipGame = ({ props }) => {
       if(result===0){
         setData(data+1)
       }
-    }, 4000);
+    }, 6000);
   }, [data]);
-  
+  useEffect(()=>{
+    setTimeout(function(){
+      ans()
+    },4000)
+  },[])
   const ff = async () => {
     await axios({
       method: "get",
-      url: "http://172.30.1.6:5200/result",
+      url: "http://172.30.1.16:5200/result",
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
       },
     })
       .then((response) => {
-        console.log(response);
+        console.log("result" +response.data);
         setResult(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const ans = async () => {
+    await axios({
+      method: "get",
+      url: "http://172.30.1.16:5200/answer",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+      .then((response) => {
+        console.log('answer'+response.data);
+        setAnswer(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -80,16 +101,41 @@ const DbdbdipGame = ({ props }) => {
         <Grid item xs={6}>
           <Paper className={classes.paper}>
             {result===0&&
-            <img src="http://172.30.1.6:5200/video_feed" width="100px"></img>
+            <div>
+            <HeadTitle style={{color:'black'}}> 디비디비딥! </HeadTitle>
+            </div>
+            }
+            {result>0&&
+            <div>
+              {answer===1&&
+              <div style={{display:'flex', flexDirection:'column'}}>
+                <HeadTitle style={{color:'black'}}> 결과는 </HeadTitle>
+                <img src={cir} width="100%"></img>
+              </div>
+              }
+              {answer===2&&
+                <div style={{display:'flex', flexDirection:'column'}}>
+                  <HeadTitle style={{color:'black'}}> 결과는 </HeadTitle>
+                  <img src={squ} width="100%"></img>
+                </div>              
+              }
+              {answer===3&&
+                <div style={{display:'flex', flexDirection:'column'}}>
+                  <HeadTitle style={{color:'black'}}> 결과는 </HeadTitle>
+                  <img src={tri} width="100%"></img>
+                </div>
+              }
+            </div>
             }
             
           </Paper>
         </Grid>
         <Grid item xs={6}>
           <Paper className={classes.paperButton}>
-          {result===0&&
-          <div>
-            <img src="http://172.30.1.6:5200/video_print_out" width="100%"></img>
+          {(result===0&&data<4)&&
+          <div style={{display:'flex', flexDirection:'column'}}>
+            <h1>3초 동안 카드 고르고 카메라 가까이</h1>
+            <img src="http://172.30.1.16:5200/video_feed" width="100%"></img>
             <button
               style={{
                 width: '140px',
@@ -100,7 +146,9 @@ const DbdbdipGame = ({ props }) => {
                 borderRadius: '20px',
                 color: 'white',
                 fontFamily:'koryeo'}}
-              onClick={() => {navigate("/retry")}}
+              onClick={() => {navigate("/retry")
+              refreshPage()
+            }}
             >
               그만!
             </button>
@@ -119,7 +167,8 @@ const DbdbdipGame = ({ props }) => {
               color: 'white',
               fontFamily:'koryeo'}}
             onClick={()=>{navigate("/retry")
-            refreshPage()}}>종료</button>
+            refreshPage()
+            }}>종료</button>
             </div>
           }
           {result===2&&

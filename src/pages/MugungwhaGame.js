@@ -193,7 +193,9 @@ const MugungwhaGame = () => {
             {sound===false&&<img src={yeongheeback} alt="관리자" width="100%"></img>}
             {sound===true&&<img src={yeongheefront} alt="관리자" width="100%"></img>}
             {result===0&&
-          <button
+            <div>
+            {sound==true&&
+              <button
               style={{
                 width: '140px',
                 height: '70px',
@@ -208,7 +210,9 @@ const MugungwhaGame = () => {
             refreshPage()}}
             >
               그만!
-            </button>}
+            </button>
+            }</div>
+          }
           </Paper>
         </Grid>
       </Grid>
